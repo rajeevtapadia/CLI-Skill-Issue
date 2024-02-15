@@ -19,10 +19,16 @@ if [[ -z "$prompt_text" ]]; then
   exit 1
 fi
 
-echo "Suggesting..."
-
 # Construct and send curl request
-api_url="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyBE-myxHyuWxQHJfIZXLYzILLVghP6nkhA"
+api_key=""
+# Check if api_key is empty
+if [[ -z "$api_key" ]]; then
+  echo "Error: Get your api key from https://makersuite.google.com and enter that in the script"
+  exit 1
+fi
+api_url="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=$api_key"
+
+echo "Suggesting..."
 
 api_request_json='{
   "contents": [
